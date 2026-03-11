@@ -1,0 +1,1120 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --color-ink: #0d0d0d;
+    --color-chalk: #f5f3ee;
+    --color-accent: #c8f23a;
+    --color-muted: #8a8778;
+    --color-border: #e2dfd8;
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --nav-height: 72px;
+}
+
+/* ── Page ─────────────────────────────────────────────────────────────────── */
+.sneakers {
+    min-height: 100svh;
+    padding-top: var(--nav-height);
+    background: var(--color-chalk);
+    font-family: var(--font-body);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.sneakers__hero {
+    background: var(--color-ink);
+    position: relative;
+    overflow: hidden;
+    padding: 5rem 2.5rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 2rem;
+    min-height: 320px;
+}
+
+/* rotating ring decoration */
+.sneakers__hero-ring {
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    transform: translateY(-50%);
+    width: clamp(220px, 30vw, 380px);
+    height: clamp(220px, 30vw, 380px);
+    border-radius: 50%;
+    border: 1px solid rgba(245, 243, 238, 0.06);
+    pointer-events: none;
+}
+
+.sneakers__hero-ring::before,
+.sneakers__hero-ring::after {
+    content: '';
+    position: absolute;
+    inset: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(245, 243, 238, 0.04);
+}
+
+.sneakers__hero-ring::after {
+    inset: 36px;
+    animation: ring-spin 28s linear infinite;
+}
+
+@keyframes ring-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* accent arc — partial circle in accent colour */
+.sneakers__hero-arc {
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    transform: translateY(-50%);
+    width: clamp(220px, 30vw, 380px);
+    height: clamp(220px, 30vw, 380px);
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--color-accent);
+    border-right-color: var(--color-accent);
+    animation: arc-spin 18s linear infinite reverse;
+    pointer-events: none;
+}
+
+@keyframes arc-spin {
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.sneakers__hero-left {
+    position: relative;
+    z-index: 2;
+}
+
+.sneakers__eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 238, 0.38);
+    margin-bottom: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sneakers__eyebrow::before {
+    content: '';
+    display: block;
+    width: 1.75rem;
+    height: 1px;
+    background: rgba(245, 243, 238, 0.2);
+}
+
+.sneakers__heading {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0.01em;
+    color: var(--color-chalk);
+    animation: fade-up 0.8s var(--ease-expo) both;
+}
+
+.sneakers__heading em {
+    font-style: normal;
+    -webkit-text-stroke: 1.5px rgba(245, 243, 238, 0.45);
+    color: transparent;
+    /* display: block; */
+}
+
+.sneakers__hero-right {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.sneakers__hero-kpi {
+    text-align: right;
+}
+
+.sneakers__hero-kpi-num {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--color-chalk);
+    letter-spacing: 0.03em;
+}
+
+.sneakers__hero-kpi-label {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 238, 0.28);
+}
+
+/* accent dot accent group */
+.sneakers__hero-accent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sneakers__hero-accent-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: pulse-dot 2.4s ease infinite;
+}
+
+@keyframes pulse-dot {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.7);
+    }
+}
+
+.sneakers__hero-accent-label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 238, 0.4);
+}
+
+/* marquee bar */
+.sneakers__marquee {
+    background: var(--color-accent);
+    height: 34px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.sneakers__marquee-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee-scroll 22s linear infinite;
+    will-change: transform;
+}
+
+.sneakers__marquee-item {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    color: var(--color-ink);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sneakers__marquee-item::after {
+    content: '✦';
+    font-size: 0.5rem;
+}
+
+@keyframes marquee-scroll {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ── Style tabs ───────────────────────────────────────────────────────────── */
+.sneakers__tabs {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--color-border);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    background: var(--color-chalk);
+    position: sticky;
+    top: var(--nav-height);
+    z-index: 10;
+}
+
+.sneakers__tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.sneakers__tab {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    margin-bottom: -1px;
+    transition: color 0.2s ease, border-color 0.25s var(--ease-expo);
+    white-space: nowrap;
+}
+
+.sneakers__tab:hover {
+    color: var(--color-ink);
+}
+
+.sneakers__tab[aria-selected='true'] {
+    color: var(--color-ink);
+    border-bottom-color: var(--color-ink);
+}
+
+/* tab count badge */
+.sneakers__tab-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.6rem;
+    font-weight: 600;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sneakers__tab[aria-selected='true'] .sneakers__tab-count {
+    background: var(--color-accent);
+    color: var(--color-ink);
+}
+
+/* ── Toolbar ──────────────────────────────────────────────────────────────── */
+.sneakers__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.9rem 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+    flex-wrap: wrap;
+    background: var(--color-chalk);
+}
+
+.sneakers__toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* size chips row */
+.sneakers__sizes {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.sneakers__size-btn {
+    background: none;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+    width: 38px;
+    height: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.sneakers__size-btn:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+}
+
+.sneakers__size-btn[aria-pressed='true'] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-chalk);
+}
+
+/* tag pills */
+.sneakers__tag-pills {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    border-left: 1px solid var(--color-border);
+    padding-left: 0.75rem;
+    margin-left: 0.25rem;
+}
+
+.sneakers__tag-pill {
+    background: none;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 0.67rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 0.25rem 0.65rem;
+    cursor: pointer;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    transition: all 0.15s ease;
+}
+
+.sneakers__tag-pill:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+}
+
+.sneakers__tag-pill[aria-pressed='true'] {
+    background: var(--color-ink);
+    border-color: var(--color-ink);
+    color: var(--color-chalk);
+}
+
+.sneakers__toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sneakers__count {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--color-muted);
+    white-space: nowrap;
+}
+
+.sneakers__sort-wrap {
+    position: relative;
+}
+
+.sneakers__sort-wrap::after {
+    content: '';
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-top: 4px solid var(--color-muted);
+    pointer-events: none;
+}
+
+.sneakers__sort {
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: 1px solid var(--color-border);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    color: var(--color-ink);
+    padding: 0.35rem 2rem 0.35rem 0.7rem;
+    cursor: pointer;
+    outline: none;
+    height: 28px;
+    transition: border-color 0.15s ease;
+}
+
+.sneakers__sort:hover,
+.sneakers__sort:focus {
+    border-color: var(--color-ink);
+}
+
+.sneakers__clear-btn {
+    background: none;
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.sneakers__clear-btn:hover {
+    color: var(--color-ink);
+}
+
+/* ── Grid ─────────────────────────────────────────────────────────────────── */
+.sneakers__body {
+    padding: 2.5rem;
+}
+
+.sneakers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ── Sneaker card ─────────────────────────────────────────────────────────── */
+.scard {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: pointer;
+    animation: scard-in 0.55s var(--ease-expo) both;
+}
+
+.scard:nth-child(1) {
+    animation-delay: 0.04s;
+}
+
+.scard:nth-child(2) {
+    animation-delay: 0.09s;
+}
+
+.scard:nth-child(3) {
+    animation-delay: 0.14s;
+}
+
+.scard:nth-child(4) {
+    animation-delay: 0.19s;
+}
+
+.scard:nth-child(5) {
+    animation-delay: 0.24s;
+}
+
+.scard:nth-child(6) {
+    animation-delay: 0.29s;
+}
+
+.scard:nth-child(7) {
+    animation-delay: 0.34s;
+}
+
+.scard:nth-child(8) {
+    animation-delay: 0.39s;
+}
+
+@keyframes scard-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Media ─────────────────────────────────────────────────────────────────── */
+.scard__media {
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    background: #eceae4;
+    display: block;
+    text-decoration: none;
+}
+
+.scard__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e4e0d8 0%, #d5d0c8 100%);
+    transition: transform 0.75s var(--ease-expo);
+}
+
+.scard:hover .scard__placeholder {
+    transform: scale(1.05);
+}
+
+.scard__placeholder svg {
+    opacity: 0.13;
+    width: 64px;
+    height: 44px;
+}
+
+.scard__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.75s var(--ease-expo);
+}
+
+.scard:hover .scard__img {
+    transform: scale(1.05);
+}
+
+/* badge */
+.scard__badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.52rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.scard__badge--new {
+    background: var(--color-accent);
+    color: var(--color-ink);
+}
+
+.scard__badge--sale {
+    background: #e05c5c;
+    color: #fff;
+}
+
+.scard__badge--bestseller {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+}
+
+.scard__badge--limited {
+    background: #f2d23a;
+    color: var(--color-ink);
+}
+
+/* style chip */
+.scard__style-chip {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.52rem;
+    background: rgba(245, 243, 238, 0.88);
+    color: var(--color-ink);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* wishlist */
+.scard__wish {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    width: 32px;
+    height: 32px;
+    background: rgba(245, 243, 238, 0.85);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.25s ease, transform 0.3s var(--ease-expo), background 0.2s ease, color 0.2s ease;
+    color: var(--color-muted);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.scard:hover .scard__wish {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.scard__wish:hover {
+    background: #fff;
+    color: #e05c5c;
+}
+
+.scard__wish--active {
+    opacity: 1 !important;
+    color: #e05c5c;
+}
+
+.scard__wish:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* ── Size picker overlay ─────────────────────────────────────────────────── */
+.scard__size-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(13, 13, 13, 0.94);
+    padding: 0.9rem 1rem 0.8rem;
+    z-index: 3;
+    transform: translateY(100%);
+    transition: transform 0.38s var(--ease-expo);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+.scard:hover .scard__size-overlay {
+    transform: translateY(0);
+}
+
+.scard__size-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.scard__size-label {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 238, 0.38);
+}
+
+.scard__size-guide {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(245, 243, 238, 0.3);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.15s ease;
+}
+
+.scard__size-guide:hover {
+    color: rgba(245, 243, 238, 0.7);
+}
+
+.scard__size-grid {
+    display: flex;
+    gap: 0.28rem;
+    flex-wrap: wrap;
+}
+
+.scard__size-chip {
+    background: none;
+    border: 1px solid rgba(245, 243, 238, 0.14);
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 500;
+    color: rgba(245, 243, 238, 0.48);
+    width: 32px;
+    height: 26px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+}
+
+.scard__size-chip:hover {
+    border-color: rgba(245, 243, 238, 0.55);
+    color: var(--color-chalk);
+}
+
+.scard__size-chip--selected {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-ink);
+}
+
+.scard__add-btn {
+    width: 100%;
+    background: var(--color-chalk);
+    border: none;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    padding: 0.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.15s ease;
+}
+
+.scard__add-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-accent);
+    transform: translateX(-101%);
+    transition: transform 0.35s var(--ease-expo);
+    z-index: 0;
+}
+
+.scard__add-btn:not(:disabled):hover::after {
+    transform: translateX(0);
+}
+
+.scard__add-btn:active {
+    transform: scale(0.98);
+}
+
+.scard__add-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.scard__add-btn:disabled::after {
+    display: none;
+}
+
+.scard__add-btn span {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.scard__add-btn--added {
+    background: var(--color-accent) !important;
+    color: var(--color-ink);
+}
+
+.scard__add-btn:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+}
+
+/* ── Card body ───────────────────────────────────────────────────────────── */
+.scard__body {
+    padding: 0.9rem 0.9rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    background: var(--color-chalk);
+}
+
+.scard__style-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.scard__style-tag {
+    font-size: 0.64rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+}
+
+.scard__divider {
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    background: var(--color-border);
+    flex-shrink: 0;
+}
+
+.scard__materials-tag {
+    font-size: 0.62rem;
+    font-weight: 300;
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scard__name {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    line-height: 1.3;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.1rem;
+}
+
+.scard__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.55rem;
+}
+
+.scard__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 0.45rem;
+}
+
+.scard__price {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    color: var(--color-ink);
+    line-height: 1;
+}
+
+.scard__price--sale {
+    color: #e05c5c;
+}
+
+.scard__original {
+    font-size: 0.76rem;
+    font-weight: 300;
+    color: var(--color-muted);
+    text-decoration: line-through;
+}
+
+.scard__swatches {
+    display: flex;
+    gap: 0.28rem;
+    align-items: center;
+}
+
+.scard__swatch {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.scard__swatch:hover,
+.scard__swatch[aria-pressed='true'] {
+    transform: scale(1.35);
+    border-color: rgba(0, 0, 0, 0.35);
+}
+
+/* ── Feature strip ────────────────────────────────────────────────────────── */
+.sneakers__feature-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+    margin: 0 2.5rem;
+}
+
+.sneakers__feature-item {
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    border-right: 1px solid var(--color-border);
+}
+
+.sneakers__feature-item:last-child {
+    border-right: none;
+}
+
+.sneakers__feature-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    flex-shrink: 0;
+    color: var(--color-muted);
+}
+
+.sneakers__feature-title {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--color-ink);
+    margin-bottom: 0.2rem;
+}
+
+.sneakers__feature-text {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
+
+/* ── Empty ─────────────────────────────────────────────────────────────────── */
+.sneakers__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 6rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.sneakers__empty-glyph {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    color: var(--color-border);
+    line-height: 1;
+}
+
+.sneakers__empty-msg {
+    font-size: 0.875rem;
+    font-weight: 300;
+    color: var(--color-muted);
+}
+
+.sneakers__empty-cta {
+    background: none;
+    border: 1px solid var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    cursor: pointer;
+    color: var(--color-ink);
+    margin-top: 0.5rem;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sneakers__empty-cta:hover {
+    background: var(--color-ink);
+    color: var(--color-chalk);
+}
+
+/* ── Keyframes ─────────────────────────────────────────────────────────────── */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Responsive ────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .sneakers__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .sneakers__feature-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sneakers__feature-item:nth-child(2) {
+        border-right: none;
+    }
+
+    .sneakers__feature-item:nth-child(3) {
+        border-top: 1px solid var(--color-border);
+    }
+
+    .sneakers__feature-item:nth-child(4) {
+        border-top: 1px solid var(--color-border);
+        border-right: none;
+    }
+}
+
+@media (max-width: 820px) {
+    .sneakers__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sneakers__hero {
+        grid-template-columns: 1fr;
+        min-height: unset;
+    }
+
+    .sneakers__hero-right {
+        display: none;
+    }
+
+    .sneakers__hero-ring,
+    .sneakers__hero-arc {
+        display: none;
+    }
+
+    .sneakers__tag-pills {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .sneakers__hero {
+        padding: 3.5rem 1.25rem 3.5rem;
+    }
+
+    .sneakers__body {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .sneakers__grid {
+        gap: 0.75rem;
+    }
+
+    .sneakers__toolbar {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .sneakers__sizes {
+        display: none;
+    }
+
+    .sneakers__feature-strip {
+        grid-template-columns: 1fr;
+        margin: 0 1.25rem;
+    }
+
+    .sneakers__feature-item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .sneakers__feature-item:last-child {
+        border-bottom: none;
+    }
+}

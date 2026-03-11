@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --color-ink: #0d0d0d;
+    --color-chalk: #f5f3ee;
+    --color-muted: #8a8778;
+    --color-border: #e2dfd8;
+    --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Section ─────────────────────────────────────────────────────────────── */
+.categories {
+    padding: 7rem 2.5rem;
+    background: var(--color-chalk);
+}
+
+.categories__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+}
+
+.categories__eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.categories__eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--color-muted);
+}
+
+.categories__heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
+}
+
+.categories__view-all {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid var(--color-ink);
+    transition: gap 0.3s var(--ease-expo), opacity 0.2s ease;
+    white-space: nowrap;
+    margin-bottom: 0.4rem;
+}
+
+.categories__view-all:hover {
+    gap: 0.9rem;
+    opacity: 0.6;
+}
+
+/* ── Grid ────────────────────────────────────────────────────────────────── */
+.categories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.category-card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    background: #e8e5de;
+    aspect-ratio: 3 / 4;
+    cursor: pointer;
+}
+
+/* accent bar — slides in from left on hover */
+.category-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--card-accent, #c8f23a);
+    z-index: 3;
+    transition: width 0.45s var(--ease-expo);
+}
+
+.category-card:hover::before {
+    width: 100%;
+}
+
+/* overlay */
+.category-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top,
+            rgba(13, 13, 13, 0.72) 0%,
+            rgba(13, 13, 13, 0.1) 55%,
+            transparent 100%);
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+.category-card:hover .category-card__overlay {
+    opacity: 0.85;
+}
+
+/* image */
+.category-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+    transition: transform 0.8s var(--ease-expo);
+}
+
+.category-card:hover .category-card__img {
+    transform: scale(1.09);
+}
+
+/* placeholder shown when no real image is available */
+.category-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #dedad2 0%, #c9c4bc 100%);
+    transform: scale(1.02);
+    transition: transform 0.8s var(--ease-expo);
+}
+
+.category-card:hover .category-card__placeholder {
+    transform: scale(1.09);
+}
+
+.category-card__placeholder svg {
+    opacity: 0.15;
+    width: 56px;
+    height: 56px;
+}
+
+/* text content */
+.category-card__body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 1.75rem;
+    z-index: 2;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.category-card__label {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: #f5f3ee;
+    transform: translateY(6px);
+    transition: transform 0.4s var(--ease-expo);
+}
+
+.category-card:hover .category-card__label {
+    transform: translateY(0);
+}
+
+.category-card__meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s 0.05s ease, transform 0.4s 0.05s var(--ease-expo);
+}
+
+.category-card:hover .category-card__meta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.category-card__count {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(245, 243, 238, 0.6);
+}
+
+.category-card__cta {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #f5f3ee;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .categories__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .categories__grid li:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .categories__grid li:last-child .category-card {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 560px) {
+    .categories {
+        padding: 5rem 1.25rem;
+    }
+
+    .categories__grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .categories__grid li:last-child {
+        grid-column: unset;
+    }
+
+    .categories__grid li:last-child .category-card {
+        aspect-ratio: 3 / 4;
+    }
+
+    .categories__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .categories__view-all {
+        margin-bottom: 0;
+    }
+}

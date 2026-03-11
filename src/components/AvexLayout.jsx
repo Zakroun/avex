@@ -158,7 +158,7 @@ function HeroSection() {
                 </div>
             </div>
             <div className="hero__image-panel">
-                <img src="src/assets/images/Hero.png" alt="Hero image showing street fashion" className="hero__img" />
+                <img src="assets/images/Hero.png" alt="Hero image showing street fashion" className="hero__img" />
             </div>
         </section>
     );

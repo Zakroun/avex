@@ -1,56 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
 import '../styles/Jeans.css';
-
-const JEANS = [
-    {
-        id: "j-001", name: "Slim Tapered Denim", price: 399, originalPrice: 499, tag: null,
-        fit: "Slim", rise: "Mid", colors: [{ hex: "#2b3a6b", label: "Indigo" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: ["28", "30", "32", "34", "36"], src: null,
-        description: "Clean tapered leg, mid-rise waistband, stretch twill.",
-    },
-    {
-        id: "j-002", name: "Cargo Utility Trousers", price: 399, originalPrice: 499, tag: "New",
-        fit: "Relaxed", rise: "Mid", colors: [{ hex: "#4a4a3a", label: "Olive" }, { hex: "#0d0d0d", label: "Black" }, { hex: "#9e9a92", label: "Stone" }],
-        sizes: ["28", "30", "32", "34", "36", "38"], src: null,
-        description: "Six-pocket cargo silhouette, ripstop cotton, utility hardware.",
-    },
-    {
-        id: "j-003", name: "Washed Straight Leg", price: 399, originalPrice: 499, tag: "Sale",
-        fit: "Straight", rise: "High", colors: [{ hex: "#5b7ba8", label: "Washed Blue" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: ["28", "30", "32", "34"], src: null,
-        description: "Enzyme washed for a worn-in feel, high-rise straight cut.",
-    },
-    {
-        id: "j-004", name: "Distressed Wide Leg", price: 399, originalPrice: 499, tag: "Limited",
-        fit: "Wide", rise: "High", colors: [{ hex: "#2b3a6b", label: "Indigo" }],
-        sizes: ["28", "30", "32", "34", "36"], src: null,
-        description: "Hand-distressed finish, wide-leg silhouette, raw hem.",
-    },
-    {
-        id: "j-005", name: "Skinny Wax Coated", price: 399, originalPrice: 499, tag: "New",
-        fit: "Slim", rise: "Mid", colors: [{ hex: "#0d0d0d", label: "Black" }, { hex: "#3a3028", label: "Dark Brown" }],
-        sizes: ["28", "30", "32", "34"], src: null,
-        description: "Wax-coated finish, skinny profile, stretch construction.",
-    },
-    {
-        id: "j-006", name: "Relaxed Chino Pant", price: 399, originalPrice: 499, tag: "Sale",
-        fit: "Relaxed", rise: "Mid", colors: [{ hex: "#c4b9a8", label: "Linen" }, { hex: "#4a4a3a", label: "Olive" }, { hex: "#9e9a92", label: "Stone" }],
-        sizes: ["28", "30", "32", "34", "36", "38"], src: null,
-        description: "Soft chino twill, relaxed fit, subtle pleated front.",
-    },
-    {
-        id: "j-007", name: "Patchwork Denim", price: 399, originalPrice: 499, tag: "Limited",
-        fit: "Wide", rise: "Low", colors: [{ hex: "#5b7ba8", label: "Washed Blue" }, { hex: "#2b3a6b", label: "Indigo" }],
-        sizes: ["28", "30", "32", "34"], src: null,
-        description: "Hand-sewn patchwork panels, asymmetric seams, contrast stitching.",
-    },
-    {
-        id: "j-008", name: "Tech Fleece Jogger", price: 399, originalPrice: 499, tag: "New",
-        fit: "Slim", rise: "Mid", colors: [{ hex: "#0d0d0d", label: "Black" }, { hex: "#2b3a6b", label: "Navy" }],
-        sizes: ["28", "30", "32", "34", "36"], src: null,
-        description: "Bonded fleece, tapered jogger cut, zip ankle.",
-    },
-];
+import { JEANS } from "../data/data";
+import { Link } from "react-router-dom";
 
 const FITS = ["All", "Slim", "Straight", "Relaxed", "Wide"];
 const RISES = ["All", "Low", "Mid", "High"];
@@ -134,7 +85,7 @@ function JeanCard({ item }) {
 
     return (
         <article className="jcard" aria-label={item.name}>
-            <a href={`#${item.id}`} className="jcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{type : "jeans"}} className="jcard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && (
                     <span className={`jcard__badge jcard__badge--${item.tag.toLowerCase()}`}>{item.tag}</span>
                 )}
@@ -184,14 +135,14 @@ function JeanCard({ item }) {
                         </span>
                     </button>
                 </div>
-            </a>
+            </Link>
             <div className="jcard__body">
                 <div className="jcard__meta-row">
                     <span className="jcard__fit-label">{item.fit}</span>
                     <span className="jcard__rise-dot" aria-hidden="true" />
                     <span className="jcard__rise-label">{item.rise} Rise</span>
                 </div>
-                <a href={`#${item.id}`} className="jcard__name">{item.name}</a>
+                <Link to={`/product/${item.id}`} state={{type : "jeans"}} className="jcard__name">{item.name}</Link>
                 <p className="jcard__desc">{item.description}</p>
                 <div className="jcard__footer">
                     <div className="jcard__prices">

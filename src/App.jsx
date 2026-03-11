@@ -7,6 +7,7 @@ import Sneakers from "./pages/Sneakers";
 import Jeans from "./pages/Jeans";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
+import Product from "./pages/Product";
 import { NavBar } from "./components/AvexLayout";
 import Footer from "./components/Footer";
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/hoodies" element={<><NavBar/><Hoodies/><Footer/></>} />
         <Route path="/sneakers" element={<><NavBar/><Sneakers/><Footer/></>} />
         <Route path="/jeans" element={<><NavBar/><Jeans/><Footer/></>} />
+        <Route path="/product/:id" element={<><NavBar/><Product/><Footer/></>} />
         <Route path="/contact" element={<><NavBar/><Contact/><Footer/></>} />
       </Routes>
     </>

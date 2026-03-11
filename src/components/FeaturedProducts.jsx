@@ -1,52 +1,7 @@
 import { useState } from "react";
 import '../styles/FeaturedProducts.css';
-const FEATURED_PRODUCTS = [
-    {
-        id: "avex-hoodie-01",
-        name: "AVEX Classic Hoodie",
-        category: "Hoodies",
-        price: 259,
-        tag: "Bestseller",
-        src: "assets/Products/hoodie3.jpg",
-        alt: "AVEX Classic Hoodie in washed black",
-        href: "#avex-hoodie-01",
-        colors: ["#0d0d0d", "#4a4a4a", "#c8f23a"],
-    },
-    {
-        id: "avex-sneakers-01",
-        name: "AVEX Low-Top Sneakers",
-        category: "Sneakers",
-        price: 299,
-        tag: "New Drop",
-        src: "assets/Products/sneaker1.jpg",
-        alt: "AVEX Low-Top Sneakers in chalk white",
-        href: "#avex-sneakers-01",
-        colors: ["#f5f3ee", "#0d0d0d"],
-    },
-    {
-        id: "avex-jeans-01",
-        name: "Baggy Denim Jeans",
-        category: "Jeans",
-        price: 399,
-        tag: null,
-        src: "assets/Products/jean1.jpg",
-        alt: "AVEX Slim Denim in indigo",
-        href: "#avex-jeans-01",
-        colors: ["#2b3a6b", "#0d0d0d"],
-    },
-    {
-        id: "street-hoodie-01",
-        name: "Street Oversized Hoodie",
-        category: "Hoodies",
-        price: 299,
-        tag: "Limited",
-        src: "assets/Products/hoodie2.jpg",
-        alt: "Street Oversized Hoodie in stone grey",
-        href: "#street-hoodie-01",
-        colors: ["#9e9a92", "#0d0d0d", "#f2d23a"],
-    },
-];
-
+import { FEATURED_PRODUCTS } from "../data/data";
+import { Link } from "react-router-dom";
 function ProductCard({ id, name, category, price, tag, src, alt, href, colors }) {
     const [added, setAdded] = useState(false);
     const [activeColor, setActiveColor] = useState(0);
@@ -59,9 +14,8 @@ function ProductCard({ id, name, category, price, tag, src, alt, href, colors })
 
     return (
         <article className="product-card" aria-label={name}>
-            <a href={href} className="product-card__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${id}`} state={{type : "featuredProducts"}} className="product-card__media" tabIndex={-1} aria-hidden="true">
                 {tag && <span className="product-card__badge">{tag}</span>}
-
                 {src ? (
                     <img
                         className="product-card__img"
@@ -101,7 +55,7 @@ function ProductCard({ id, name, category, price, tag, src, alt, href, colors })
                         </>
                     )}
                 </button>
-            </a>
+            </Link>
             <div className="product-card__body">
                 <span className="product-card__category">{category}</span>
                 <a href={href} className="product-card__name" style={{ textDecoration: "none" }}>

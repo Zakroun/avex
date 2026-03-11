@@ -1,20 +1,7 @@
 import { useState, useMemo, useCallback, useId } from "react";
 import '../styles/Shop.css';
-const ALL_PRODUCTS = [
-    { id: "h-001", name: "Classic Oversized Hoodie", category: "hoodies", price: 299, originalPrice: null, tag: "Bestseller", colors: ["#0d0d0d", "#9e9a92", "#c8f23a"], src: null },
-    { id: "h-002", name: "Acid Wash Zip-Up", category: "hoodies", price: 299, originalPrice: null, tag: "New", colors: ["#4a3728", "#c4b9a8"], src: null },
-    { id: "h-003", name: "Street Fleece Pullover", category: "hoodies", price: 299, originalPrice: 90, tag: "Sale", colors: ["#2b3a6b", "#0d0d0d"], src: null },
-    { id: "h-004", name: "Thermal Heavyweight Hoodie", category: "hoodies", price: 299, originalPrice: null, tag: "Limited", colors: ["#f5f3ee", "#8a8778"], src: null },
-    { id: "j-001", name: "Slim Tapered Denim", category: "jeans", price: 359, originalPrice: null, tag: null, colors: ["#2b3a6b", "#0d0d0d"], src: null },
-    { id: "j-002", name: "Cargo Utility Trousers", category: "jeans", price: 359, originalPrice: null, tag: "New", colors: ["#4a4a3a", "#0d0d0d", "#9e9a92"], src: null },
-    { id: "j-003", name: "Washed Straight Leg", category: "jeans", price: 359, originalPrice: 100, tag: "Sale", colors: ["#5b7ba8", "#0d0d0d"], src: null },
-    { id: "j-004", name: "Distressed Wide Leg", category: "jeans", price: 359, originalPrice: null, tag: "Limited", colors: ["#2b3a6b"], src: null },
-    { id: "s-001", name: "Low-Top Court Sneaker", category: "sneakers", price: 299, originalPrice: null, tag: "Bestseller", colors: ["#f5f3ee", "#0d0d0d"], src: null },
-    { id: "s-002", name: "Chunky Sole Runner", category: "sneakers", price: 299, originalPrice: null, tag: "New", colors: ["#0d0d0d", "#c8f23a", "#f5f3ee"], src: null },
-    { id: "s-003", name: "Canvas High-Top", category: "sneakers", price: 299, originalPrice: 130, tag: "Sale", colors: ["#f2d23a", "#0d0d0d"], src: null },
-    { id: "s-004", name: "Slip-On Skate", category: "sneakers", price: 299, originalPrice: null, tag: null, colors: ["#9e9a92", "#0d0d0d"], src: null },
-];
-
+import { Link } from "react-router-dom";
+import { ALL_PRODUCTS } from "../data/data";
 const CATEGORIES = [
     { id: "all", label: "All" },
     { id: "hoodies", label: "Hoodies" },
@@ -56,7 +43,7 @@ function ProductCard({ product, listView }) {
 
     return (
         <article className="pcard" aria-label={product.name}>
-            <a href={`#${product.id}`} className="pcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${product.id}`} state={{type : "all_products"}} className="pcard__media" tabIndex={-1} aria-hidden="true">
                 {product.tag && (
                     <span className={badgeClass(product.tag)}>{product.tag}</span>
                 )}
@@ -92,13 +79,13 @@ function ProductCard({ product, listView }) {
                         </>
                     )}
                 </button>
-            </a>
+            </Link>
             <div className="pcard__body">
                 <div>
                     <span className="pcard__cat">{product.category}</span>
-                    <a href={`#${product.id}`} className="pcard__name" style={{ display: "block" }}>
+                    <Link to={`/product/${product.id}`} state={{type : "all_products"}} className="pcard__name" style={{ display: "block" }}>
                         {product.name}
-                    </a>
+                    </Link>
                 </div>
                 <div className="pcard__footer">
                     <div className="pcard__prices">

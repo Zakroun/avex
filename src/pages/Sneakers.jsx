@@ -1,71 +1,7 @@
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 import '../styles/Sneakers.css';
-const SNEAKERS = [
-    {
-        id: "s-001", name: "Low-Top Court Sneaker", price: 250, originalPrice: 300, tag: "Bestseller",
-        style: "Low-Top", gender: "Unisex",
-        colors: [{ hex: "#f5f3ee", label: "Chalk" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: [38, 39, 40, 41, 42, 43, 44, 45], src: null,
-        description: "Clean court silhouette, vulcanised sole, premium canvas upper.",
-        materials: "Canvas / Rubber sole",
-    },
-    {
-        id: "s-002", name: "Chunky Sole Runner", price: 250, originalPrice: 300, tag: "New",
-        style: "Runner", gender: "Unisex",
-        colors: [{ hex: "#0d0d0d", label: "Black" }, { hex: "#c8f23a", label: "Acid" }, { hex: "#f5f3ee", label: "Chalk" }],
-        sizes: [39, 40, 41, 42, 43, 44, 45], src: null,
-        description: "Exaggerated chunky sole, mesh upper, padded ankle collar.",
-        materials: "Mesh / TPU sole",
-    },
-    {
-        id: "s-003", name: "Canvas High-Top", price: 250, originalPrice: 300, tag: "Sale",
-        style: "High-Top", gender: "Unisex",
-        colors: [{ hex: "#f2d23a", label: "Solar" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: [38, 39, 40, 41, 42, 43, 44], src: null,
-        description: "Classic high-top silhouette, raw canvas, ankle strap detail.",
-        materials: "Canvas / Rubber sole",
-    },
-    {
-        id: "s-004", name: "Slip-On Skate", price: 250, originalPrice: 300, tag: null,
-        style: "Slip-On", gender: "Unisex",
-        colors: [{ hex: "#9e9a92", label: "Stone" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: [38, 39, 40, 41, 42, 43, 44, 45], src: null,
-        description: "Elastic gore panel, waffle outsole, suede-touch upper.",
-        materials: "Suede / Waffle rubber",
-    },
-    {
-        id: "s-005", name: "Technical Trail Runner", price: 250, originalPrice: 300, tag: "New",
-        style: "Runner", gender: "Unisex",
-        colors: [{ hex: "#4a4a3a", label: "Olive" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: [40, 41, 42, 43, 44, 45], src: null,
-        description: "Waterproof membrane, aggressive lug sole, reflective detailing.",
-        materials: "Ripstop / Lug rubber",
-    },
-    {
-        id: "s-006", name: "Suede Mid-Top", price: 250, originalPrice: 300, tag: "Sale",
-        style: "Mid-Top", gender: "Unisex",
-        colors: [{ hex: "#c4b9a8", label: "Linen" }, { hex: "#4a3728", label: "Umber" }],
-        sizes: [38, 39, 40, 41, 42, 43, 44, 45], src: null,
-        description: "Premium suede, gum sole, tonal lacing with metal aglets.",
-        materials: "Suede / Gum sole",
-    },
-    {
-        id: "s-007", name: "Woven Low Mule", price: 250, originalPrice: 300, tag: "Limited",
-        style: "Slip-On", gender: "Unisex",
-        colors: [{ hex: "#f5f3ee", label: "Chalk" }, { hex: "#c8f23a", label: "Acid" }],
-        sizes: [38, 39, 40, 41, 42, 43, 44], src: null,
-        description: "Open-back mule, handwoven textile upper, foam footbed.",
-        materials: "Textile / EVA sole",
-    },
-    {
-        id: "s-008", name: "Archive Low Leather", price: 250, originalPrice: 300, tag: "Limited",
-        style: "Low-Top", gender: "Unisex",
-        colors: [{ hex: "#f5f3ee", label: "Chalk" }, { hex: "#2b3a6b", label: "Navy" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: [39, 40, 41, 42, 43, 44, 45], src: null,
-        description: "Full-grain leather, micro-perforated toe box, stacked heel.",
-        materials: "Full-grain leather / Stacked leather heel",
-    },
-];
+import { SNEAKERS } from "../data/data";
+import { Link } from "react-router-dom";
 
 const STYLES = ["All", "Low-Top", "High-Top", "Mid-Top", "Runner", "Slip-On"];
 const EU_SIZES = [38, 39, 40, 41, 42, 43, 44, 45];
@@ -163,7 +99,7 @@ function SneakerCard({ item }) {
 
     return (
         <article className="scard" aria-label={item.name}>
-            <a href={`#${item.id}`} className="scard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{type : "sneakers"}} className="scard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && (
                     <span className={`scard__badge scard__badge--${item.tag.toLowerCase()}`}>{item.tag}</span>
                 )}
@@ -233,14 +169,14 @@ function SneakerCard({ item }) {
                         </span>
                     </button>
                 </div>
-            </a>
+            </Link>
             <div className="scard__body">
                 <div className="scard__style-row">
                     <span className="scard__style-tag">{item.style}</span>
                     <span className="scard__divider" aria-hidden="true" />
                     <span className="scard__materials-tag">{item.materials}</span>
                 </div>
-                <a href={`#${item.id}`} className="scard__name">{item.name}</a>
+                <Link to={`/product/${item.id}`} state={{type : "sneakers"}} className="scard__name">{item.name}</Link>
                 <div className="scard__footer">
                     <div className="scard__prices">
                         <span className={`scard__price${item.originalPrice ? " scard__price--sale" : ""}`}>

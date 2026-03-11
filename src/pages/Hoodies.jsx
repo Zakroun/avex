@@ -1,48 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import '../styles/Hoodies.css';
-const HOODIES = [
-    {
-        id: "h-001", name: "Classic Oversized Hoodie", price: 299, originalPrice: 399, tag: "Bestseller",
-        colors: [{ hex: "#0d0d0d", label: "Black" }, { hex: "#9e9a92", label: "Stone" }, { hex: "#c8f23a", label: "Acid" }],
-        sizes: ["XS", "S", "M", "L", "XL", "XXL"], src: null, description: "Relaxed fit, 400gsm French terry, dropped shoulders.",
-    },
-    {
-        id: "h-002", name: "Acid Wash Zip-Up", price: 299, originalPrice: 399, tag: "New",
-        colors: [{ hex: "#4a3728", label: "Umber" }, { hex: "#c4b9a8", label: "Linen" }],
-        sizes: ["S", "M", "L", "XL"], src: null, description: "Vintage acid wash, full YKK zip, kangaroo pocket.",
-    },
-    {
-        id: "h-003", name: "Street Fleece Pullover", price: 299, originalPrice: 399, tag: "Sale",
-        colors: [{ hex: "#2b3a6b", label: "Navy" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: ["XS", "S", "M", "L", "XL"], src: null, description: "Brushed fleece interior, ribbed cuffs and hem.",
-    },
-    {
-        id: "h-004", name: "Thermal Heavyweight Hoodie", price: 299, originalPrice: 399, tag: "Limited",
-        colors: [{ hex: "#f5f3ee", label: "Chalk" }, { hex: "#8a8778", label: "Slate" }],
-        sizes: ["S", "M", "L", "XL", "XXL"], src: null, description: "650gsm weight, brushed cotton interior, boxy cut.",
-    },
-    {
-        id: "h-005", name: "Washed Crop Hoodie", price: 299, originalPrice: 399, tag: "New",
-        colors: [{ hex: "#c8f23a", label: "Acid" }, { hex: "#f2d23a", label: "Solar" }, { hex: "#e8a87c", label: "Clay" }],
-        sizes: ["XS", "S", "M", "L"], src: null, description: "Cropped silhouette, enzyme washed for a worn-in feel.",
-    },
-    {
-        id: "h-006", name: "Utility Pocket Hoodie", price: 299, originalPrice: 399, tag: null,
-        colors: [{ hex: "#4a4a3a", label: "Olive" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: ["S", "M", "L", "XL", "XXL"], src: null, description: "Chest patch pocket, drawstring hood, relaxed fit.",
-    },
-    {
-        id: "h-007", name: "Reverse Weave Classic", price: 299, originalPrice: 399, tag: "Sale",
-        colors: [{ hex: "#9e9a92", label: "Stone" }, { hex: "#4a3728", label: "Umber" }],
-        sizes: ["S", "M", "L", "XL"], src: null, description: "Reverse weave construction, minimal shrinkage.",
-    },
-    {
-        id: "h-008", name: "Quarter-Zip Tech Fleece", price: 299, originalPrice: 399, tag: "Limited",
-        colors: [{ hex: "#2b3a6b", label: "Navy" }, { hex: "#0d0d0d", label: "Black" }],
-        sizes: ["XS", "S", "M", "L", "XL"], src: null, description: "Technical fleece, moisture management, slim fit.",
-    },
-];
-
+import { HOODIES } from "../data/data";
+import { Link } from "react-router-dom";
 const SORT_OPTIONS = [
     { value: "featured", label: "Featured" },
     { value: "price-asc", label: "Price: Low → High" },
@@ -133,7 +92,7 @@ function HoodieCard({ item }) {
 
     return (
         <article className="hcard" aria-label={item.name}>
-            <a href={`#${item.id}`} className="hcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{type : "hoodies"}} className="hcard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && <span className={badgeClass(item.tag)}>{item.tag}</span>}
                 <button
                     className={`hcard__wish${wished ? " hcard__wish--active" : ""}`}
@@ -195,9 +154,9 @@ function HoodieCard({ item }) {
                         </span>
                     </button>
                 </div>
-            </a>
+            </Link>
             <div className="hcard__body">
-                <a href={`#${item.id}`} className="hcard__name">{item.name}</a>
+                <Link to={`/product/${item.id}`} state={{type : "hoodies"}} className="hcard__name">{item.name}</Link>
                 <p className="hcard__desc">{item.description}</p>
                 <div className="hcard__footer">
                     <div className="hcard__prices">

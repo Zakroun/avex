@@ -11,12 +11,12 @@ const NAV_LINKS = [
     { label: "Contact", href: "/contact" },
 ];
 
-export function NavBar({ cartCount = 2 }) {
+export function NavBar({ cartCount = 2, favoritesCount = 0 }) {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    
+
     const handleScroll = useCallback(() => {
         setScrolled(window.scrollY > 12);
     }, []);
@@ -25,7 +25,7 @@ export function NavBar({ cartCount = 2 }) {
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, [handleScroll]);
-    
+
     useEffect(() => {
         if (!menuOpen) return;
         const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
@@ -66,6 +66,20 @@ export function NavBar({ cartCount = 2 }) {
                     ))}
                 </ul>
                 <div className="nav__actions">
+                    <button
+                        className="nav__favorites-btn"
+                        onClick={() => navigate("/favorites")}
+                        aria-label={`Favorites — ${favoritesCount} items`}
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                        {favoritesCount > 0 && (
+                            <span className="nav__favorites-count" aria-hidden="true">
+                                {favoritesCount}
+                            </span>
+                        )}
+                    </button>
                     <button
                         className="nav__cart-btn"
                         onClick={() => navigate("/cart")}
@@ -120,7 +134,7 @@ export function NavBar({ cartCount = 2 }) {
 
 function HeroSection() {
     const navigate = useNavigate();
-    
+
     return (
         <section className="hero" aria-label="Hero">
             <div className="hero__content">
@@ -135,15 +149,15 @@ function HeroSection() {
                     for those who move through the city on their own terms.
                 </p>
                 <div className="hero__cta-row">
-                    <button 
-                        className="btn-primary" 
+                    <button
+                        className="btn-primary"
                         aria-label="Shop the collection"
                         onClick={() => navigate("/shop")}
                     >
                         <span>Shop Collection</span>
                     </button>
-                    <button 
-                        className="btn-ghost" 
+                    <button
+                        className="btn-ghost"
                         aria-label="View lookbook"
                     >
                         Lookbook

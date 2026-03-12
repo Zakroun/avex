@@ -784,7 +784,7 @@
 
 .hoodies__feature-item {
     padding: 1.75rem 1.5rem;
-    display: flex;
+    /* display: flex; */
     align-items: flex-start;
     gap: 1rem;
     border-right: 1px solid var(--color-border);

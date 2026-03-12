@@ -6,6 +6,7 @@ import Hoodies from "./pages/Hoodies";
 import Sneakers from "./pages/Sneakers";
 import Jeans from "./pages/Jeans";
 import Contact from "./pages/Contact";
+import About from "./pages/About";
 import Checkout from "./pages/Checkout";
 import Product from "./pages/Product";
 import Favorites from "./pages/Favorites";
@@ -24,6 +25,7 @@ function App() {
         <Route path="/jeans" element={<><NavBar/><Jeans/><Footer/></>} />
         <Route path="/product/:id" element={<><NavBar/><Product/><Footer/></>} />
         <Route path="/contact" element={<><NavBar/><Contact/><Footer/></>} />
+        <Route path="/about" element={<><NavBar/><About/><Footer/></>} />
         <Route path="/favorites" element={<><NavBar/><Favorites/><Footer/></>} />
       </Routes>
     </>

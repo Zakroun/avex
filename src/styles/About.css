@@ -135,8 +135,8 @@
     color: transparent;
     -webkit-text-stroke: 1px rgba(245, 243, 238, 0.05);
     pointer-events: none;
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
     z-index: 1;
 }
 
@@ -340,8 +340,6 @@
     margin-bottom: 0.75rem;
 }
 
-.about__manifesto-body {}
-
 .about__manifesto-intro {
     font-family: var(--font-display);
     font-size: clamp(2.2rem, 5vw, 4rem);
@@ -459,8 +457,6 @@
 .about__timeline-item--accent .about__timeline-year {
     color: var(--color-ink);
 }
-
-.about__timeline-content {}
 
 .about__timeline-event {
     font-family: var(--font-display);
@@ -621,8 +617,8 @@
     letter-spacing: 0.08em;
     color: rgba(245, 243, 238, 0.08);
     line-height: 1;
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
 }
 
 /* accent bottom bar on hover */
@@ -777,8 +773,6 @@
     z-index: 1;
 }
 
-.about__sustain-content {}
-
 .about__sustain-heading {
     font-family: var(--font-display);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -862,8 +856,8 @@
     color: transparent;
     -webkit-text-stroke: 1px rgba(245, 243, 238, 0.04);
     pointer-events: none;
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
 }
 
 .about__cta-heading {

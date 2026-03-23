@@ -1,5 +1,6 @@
 import { useState, useMemo, useCallback, useId } from "react";
 import '../styles/Shop.css';
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ALL_PRODUCTS } from "../data/data";
 const CATEGORIES = [
@@ -43,7 +44,7 @@ function ProductCard({ product, listView }) {
 
     return (
         <article className="pcard" aria-label={product.name}>
-            <Link to={`/product/${product.id}`} state={{type : "all_products"}} className="pcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${product.id}`} state={{ type: "all_products" }} className="pcard__media" tabIndex={-1} aria-hidden="true">
                 {product.tag && (
                     <span className={badgeClass(product.tag)}>{product.tag}</span>
                 )}
@@ -83,7 +84,7 @@ function ProductCard({ product, listView }) {
             <div className="pcard__body">
                 <div>
                     <span className="pcard__cat">{product.category}</span>
-                    <Link to={`/product/${product.id}`} state={{type : "all_products"}} className="pcard__name" style={{ display: "block" }}>
+                    <Link to={`/product/${product.id}`} state={{ type: "all_products" }} className="pcard__name" style={{ display: "block" }}>
                         {product.name}
                     </Link>
                 </div>
@@ -116,7 +117,12 @@ function ProductCard({ product, listView }) {
 
 export default function Shop() {
     const sortId = useId();
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const [activeCategory, setActiveCategory] = useState("all");
     const [activeTag, setActiveTag] = useState(null);
     const [sortKey, setSortKey] = useState("featured");

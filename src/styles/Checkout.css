@@ -178,8 +178,8 @@
     outline: none;
     transition: border-color 0.2s ease, background 0.2s ease;
     width: 100%;
-    appearance: none;
     -webkit-appearance: none;
+    appearance: none;
     line-height: 1.4;
 }
 

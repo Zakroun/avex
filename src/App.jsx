@@ -12,6 +12,7 @@ import Product from "./pages/Product";
 import Favorites from "./pages/Favorites";
 import { NavBar } from "./components/AvexLayout";
 import Footer from "./components/Footer";
+import { useEffect } from "react";
 function App() {
   return (
     <>

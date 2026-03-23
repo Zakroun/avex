@@ -1,4 +1,5 @@
-import { useState, useCallback, useId, useMemo } from "react";
+import { useState, useCallback, useMemo } from "react";
+import { useEffect } from "react";
 import '../styles/Checkout.css';
 
 const ORDER_ITEMS = [
@@ -483,7 +484,12 @@ export default function Checkout() {
     const [payErrors, setPayErrors] = useState({});
     const [payMethod, setPayMethod] = useState("card");
     const [submitting, setSubmitting] = useState(false);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const handleInfoChange = useCallback((e) => {
         const { name, value } = e.target;
         setInfoFields(p => ({ ...p, [name]: value }));

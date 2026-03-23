@@ -47,8 +47,8 @@ body {
 .nav--scrolled {
     border-color: var(--color-border);
     background: rgba(245, 243, 238, 0.92);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
 }
 
 .nav__wordmark {

@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import "../styles/Product.css";
 
 const ACCORDION_DATA = [
@@ -241,7 +242,12 @@ export default function Product() {
     const sneakers = useSelector(state => state.avex.sneakers);
     const featuredProducts = useSelector(state => state.avex.featuredProducts);
     const allProducts = useSelector(state => state.avex.allProducts);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const product = useMemo(() => {
         const parsedId = parseInt(id) || id;
         switch (type) {
@@ -282,7 +288,7 @@ export default function Product() {
     if (!type) {
         return (
             <>
-                
+
                 <div className="pdp">
                     <div className="pdp__not-found">
                         <span className="pdp__not-found-glyph" aria-hidden="true">?</span>
@@ -298,7 +304,7 @@ export default function Product() {
     if (!product) {
         return (
             <>
-                
+
                 <div className="pdp">
                     <div className="pdp__not-found">
                         <span className="pdp__not-found-glyph" aria-hidden="true">404</span>
@@ -317,7 +323,7 @@ export default function Product() {
 
     return (
         <>
-            
+
             <div className="pdp" id="pdp">
                 <ol className="pdp__breadcrumb" aria-label="Breadcrumb">
                     <li className="pdp__breadcrumb-item"><a href="/">Home</a></li>

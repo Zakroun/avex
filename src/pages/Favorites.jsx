@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import '../styles/Favorites.css';
 const fmt = (n) => `$${Number(n).toFixed(2).replace(/\.00$/, "")}`;
@@ -221,7 +222,12 @@ export default function Favorites() {
         });
         return counts;
     }, [favorites]);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const filtered = useMemo(() => {
         const base = activeTab === "all" ? favorites : favorites.filter(i => i.type === activeTab);
         return sortItems(base, sortKey);

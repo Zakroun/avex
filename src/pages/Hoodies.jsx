@@ -77,7 +77,12 @@ function HoodieCard({ item }) {
     const [activeColor, setActiveColor] = useState(0);
     const [wished, setWished] = useState(false);
     const [added, setAdded] = useState(false);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const handleAdd = useCallback((e) => {
         e.preventDefault();
         if (!selectedSize) return;
@@ -92,7 +97,7 @@ function HoodieCard({ item }) {
 
     return (
         <article className="hcard" aria-label={item.name}>
-            <Link to={`/product/${item.id}`} state={{type : "hoodies"}} className="hcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{ type: "hoodies" }} className="hcard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && <span className={badgeClass(item.tag)}>{item.tag}</span>}
                 <button
                     className={`hcard__wish${wished ? " hcard__wish--active" : ""}`}
@@ -156,7 +161,7 @@ function HoodieCard({ item }) {
                 </div>
             </Link>
             <div className="hcard__body">
-                <Link to={`/product/${item.id}`} state={{type : "hoodies"}} className="hcard__name">{item.name}</Link>
+                <Link to={`/product/${item.id}`} state={{ type: "hoodies" }} className="hcard__name">{item.name}</Link>
                 <p className="hcard__desc">{item.description}</p>
                 <div className="hcard__footer">
                     <div className="hcard__prices">

@@ -1,4 +1,5 @@
 import { useState, useId } from "react";
+import { useEffect } from "react";
 import '../styles/Contact.css';
 const CONTACT_CHANNELS = [
     {
@@ -74,7 +75,12 @@ export default function Contact() {
         subject: useId(),
         message: useId(),
     };
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const [fields, setFields] = useState(INITIAL_FORM);
     const [errors, setErrors] = useState(INITIAL_ERRS);
     const [status, setStatus] = useState("idle");

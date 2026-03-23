@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
+import { useEffect } from "react";
 import '../styles/Jeans.css';
 import { JEANS } from "../data/data";
 import { Link } from "react-router-dom";
@@ -85,7 +86,7 @@ function JeanCard({ item }) {
 
     return (
         <article className="jcard" aria-label={item.name}>
-            <Link to={`/product/${item.id}`} state={{type : "jeans"}} className="jcard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{ type: "jeans" }} className="jcard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && (
                     <span className={`jcard__badge jcard__badge--${item.tag.toLowerCase()}`}>{item.tag}</span>
                 )}
@@ -142,7 +143,7 @@ function JeanCard({ item }) {
                     <span className="jcard__rise-dot" aria-hidden="true" />
                     <span className="jcard__rise-label">{item.rise} Rise</span>
                 </div>
-                <Link to={`/product/${item.id}`} state={{type : "jeans"}} className="jcard__name">{item.name}</Link>
+                <Link to={`/product/${item.id}`} state={{ type: "jeans" }} className="jcard__name">{item.name}</Link>
                 <p className="jcard__desc">{item.description}</p>
                 <div className="jcard__footer">
                     <div className="jcard__prices">
@@ -186,7 +187,12 @@ export default function Jeans() {
             max: Math.max(...prices)
         };
     }, []);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const filtered = useMemo(() => {
         let list = JEANS;
         if (activeFit !== "All") list = list.filter(p => p.fit === activeFit);

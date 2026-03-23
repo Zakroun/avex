@@ -52,7 +52,12 @@ const MARQUEE_ITEMS = [
 function useReveal() {
     const ref = useRef(null);
     const [visible, setVisible] = useState(false);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     useEffect(() => {
         const el = ref.current;
         if (!el) return;

@@ -84,7 +84,12 @@ function SneakerCard({ item }) {
     const [activeColor, setActiveColor] = useState(0);
     const [wished, setWished] = useState(false);
     const [added, setAdded] = useState(false);
-
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const handleAdd = useCallback((e) => {
         e.preventDefault();
         if (!selectedSize) return;
@@ -99,7 +104,7 @@ function SneakerCard({ item }) {
 
     return (
         <article className="scard" aria-label={item.name}>
-            <Link to={`/product/${item.id}`} state={{type : "sneakers"}} className="scard__media" tabIndex={-1} aria-hidden="true">
+            <Link to={`/product/${item.id}`} state={{ type: "sneakers" }} className="scard__media" tabIndex={-1} aria-hidden="true">
                 {item.tag && (
                     <span className={`scard__badge scard__badge--${item.tag.toLowerCase()}`}>{item.tag}</span>
                 )}
@@ -176,7 +181,7 @@ function SneakerCard({ item }) {
                     <span className="scard__divider" aria-hidden="true" />
                     <span className="scard__materials-tag">{item.materials}</span>
                 </div>
-                <Link to={`/product/${item.id}`} state={{type : "sneakers"}} className="scard__name">{item.name}</Link>
+                <Link to={`/product/${item.id}`} state={{ type: "sneakers" }} className="scard__name">{item.name}</Link>
                 <div className="scard__footer">
                     <div className="scard__prices">
                         <span className={`scard__price${item.originalPrice ? " scard__price--sale" : ""}`}>

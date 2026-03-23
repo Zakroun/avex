@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
+import { useEffect } from "react";
 import '../styles/Cart.css';
 import { useNavigate } from "react-router-dom";
 
@@ -175,7 +176,12 @@ export default function Cart() {
         () => items.reduce((sum, i) => sum + i.price * i.qty, 0),
         [items]
     );
-    
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
     const discount = appliedPromo ? subtotal * PROMO_CODES[appliedPromo] : 0;
     const afterDiscount = subtotal - discount;
     const shipping = afterDiscount >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
@@ -183,7 +189,7 @@ export default function Cart() {
     const totalQty = items.reduce((s, i) => s + i.qty, 0);
     const shippingPct = Math.min((afterDiscount / FREE_SHIPPING_THRESHOLD) * 100, 100);
     const shippingEarned = shipping === 0;
-    
+
     const handleQtyChange = useCallback((id, newQty) => {
         if (newQty < 1 || newQty > 10) return;
         setItems(prev => prev.map(i => i.id === id ? { ...i, qty: newQty } : i));
@@ -209,10 +215,10 @@ export default function Cart() {
 
     const handleApplyPromo = useCallback(() => {
         const code = promoInput.trim().toUpperCase();
-        if (!code) { 
-            setPromoStatus("error"); 
-            setPromoMsg("Enter a promo code."); 
-            return; 
+        if (!code) {
+            setPromoStatus("error");
+            setPromoMsg("Enter a promo code.");
+            return;
         }
         if (PROMO_CODES[code]) {
             setAppliedPromo(code);
@@ -297,7 +303,7 @@ export default function Cart() {
                                                 <CartRow
                                                     key={item.id}
                                                     item={{ ...item, qty: 1 }}
-                                                    onQtyChange={() => {}}
+                                                    onQtyChange={() => { }}
                                                     onRemove={(id) => setSavedItems(p => p.filter(i => i.id !== id))}
                                                     onSaveForLater={handleMoveToCart}
                                                 />
@@ -396,7 +402,7 @@ export default function Cart() {
                                     <span className="cart__order-line-value">{fmt(total)}</span>
                                 </div>
                             </div>
-                            <button className="cart__checkout-btn" onClick={()=>navigate('/checkout')} aria-label={`Proceed to checkout — total ${fmt(total)}`}>
+                            <button className="cart__checkout-btn" onClick={() => navigate('/checkout')} aria-label={`Proceed to checkout — total ${fmt(total)}`}>
                                 <span>
                                     Checkout — {fmt(total)}
                                     <svg width="14" height="10" viewBox="0 0 14 10" fill="none" aria-hidden="true">

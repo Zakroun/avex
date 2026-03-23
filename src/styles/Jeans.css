@@ -434,8 +434,8 @@
     position: absolute;
     width: 100%;
     top: -7px;
-    appearance: none;
     -webkit-appearance: none;
+    appearance: none;
     background: none;
     outline: none;
     pointer-events: none;
@@ -462,9 +462,6 @@
     cursor: pointer;
     pointer-events: all;
 }
-
-/* ── Main content ────────────────────────────────────────────────────────── */
-.jeans__main {}
 
 .jeans__topbar {
     display: flex;
@@ -549,8 +546,8 @@
 }
 
 .jeans__sort {
-    appearance: none;
     -webkit-appearance: none;
+    appearance: none;
     background: none;
     border: 1px solid var(--color-border);
     font-family: var(--font-body);

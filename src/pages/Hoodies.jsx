@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import '../styles/Hoodies.css';
 import { HOODIES } from "../data/data";
 import { Link } from "react-router-dom";

@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback, useEffect } from "react";
 import '../styles/Sneakers.css';
 import { SNEAKERS } from "../data/data";
 import { Link } from "react-router-dom";
